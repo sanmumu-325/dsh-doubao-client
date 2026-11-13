@@ -1,0 +1,31 @@
+{
+  "name": "@sanmumu/dsh-doubao-client",
+  "version": "1.8.0",
+  "description": "Expose the models of a locally running Doubao desktop client as a DeepSeek Harness provider: all twelve catalog models in ordinary chat mode, real image input through the client's own upload channel, subscription quota query, a local character-based usage ledger, and strict-JSON tool emulation. Unofficial local integration over the client's loopback debugging port; never exports credentials, never enables the native task runtime.",
+  "type": "module",
+  "license": "MIT",
+  "author": "sanmumu-325",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "doubao",
+    "model-provider",
+    "reverse-proxy",
+    "image-input",
+    "usage-ledger",
+    "quota"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanmumu-325/dsh-doubao-client.git"
+  },
+  "homepage": "https://github.com/sanmumu-325/dsh-doubao-client#readme",
+  "bugs": {
+    "url": "https://github.com/sanmumu-325/dsh-doubao-client/issues"
+  },
+  "engines": { "node": ">=22" },
+  "exports": { ".": "./index.js", "./client": "./client.js", "./locale/*.json": "./locale/*.json", "./icon": "./icon.svg" },
+  "files": ["index.js", "client.js", "service.js", "setup-route.js", "startup.js", "startup-windows.js", "adapter.js", "bridge.js", "channel.js", "cdp.js", "protocol.js", "renderer.js", "session.js", "usage.js", "cordis.patch.yml", "icon.svg", "locale/*.json", "README.md", "CHANGELOG.md", "LICENSE", "launch-doubao.ps1", "live-check.mjs", "*.test.mjs"],
+  "scripts": { "test": "node --test *.test.mjs", "check": "node --check index.js && node --check client.js && node --check adapter.js && node --check bridge.js && node --check renderer.js && node --test *.test.mjs", "live": "node live-check.mjs" },
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" }, "client": { "platform": "web", "inject": ["slots", "locale"] } }
+}

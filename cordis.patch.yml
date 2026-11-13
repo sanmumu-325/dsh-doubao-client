@@ -1,0 +1,16 @@
+- insert:
+    - id: doubao-client
+      name: '@sanmumu/dsh-doubao-client'
+      config:
+        endpoint: 'http://127.0.0.1:19226'
+        timeoutMs: 180000
+        # 按用户选择向 DSH 发布客户端目录标称窗口（256k/300k）。
+        # 仅影响 DSH 的窗口声明，不扩大服务端实际容量。
+        trustDeclaredWindow: true
+        # 本地字符上限，与 token 窗口是两个不同单位；不保证上游完整保留输入。
+        maxPromptChars: 400000
+        maxOutputChars: 120000
+        # 不同 DSH 会话最多 2 路并发；同一会话仍串行以保护续接。
+        maxConcurrent: 2
+        # 槽位满后按 FIFO 等待最多 20 秒，超时明确报忙，不自动重试。
+        busyWaitMs: 20000
